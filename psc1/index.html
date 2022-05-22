@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #manna{
+            display: flex;
+            box-shadow: 10px 10px 10px 10px rgb(112, 96, 67);
+            margin: auto;
+            border: 1px solid black;
+            height: 300px;
+            width: 300px;
+            gap: 50px;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-radius: 10px;
+            margin-top: auto;
+
+        }
+        #pinky{
+         background-color: brown;
+         color: white;
+         border-color: brown;
+         height: 40px;
+         width: 30%;
+        }
+        #sbm{
+            color: white;
+            background-color: brown
+            
+        }
+        #nav{
+            background-color: teal;
+            height: 50px;
+            width: 100%;
+            margin: auto;
+            gap: 50px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">FT-WEB-13||
+        FT-WEB-14||
+        FT-WEB-15||
+        FT-WEB-16||
+        FT-WEB-17||
+        FT-WEB-18
+    </div>
+    
+        <div id="manna">
+            <button id="pinky"><a href="dashboard.html">Dashboard</a></button>
+            <form action="" id="nikhil" onsubmit="storeData(event)">
+                <input type="text" id="name" placeholder="Name">
+                <input type="text" id="course" placeholder="Course">
+                <input type="number" id="unit" placeholder="Unit">
+                <input type="text" id="image" placeholder="Image">
+                <input type="Number" id="batch" placeholder="FT-Web">
+                <input  type="submit"  name=""  id="sbm">
+            </form>
+        </div>
+       
+</body>
+</html>
+<script>
+    function Student(n,c,u,i,b){
+        this.name = n;
+        this.course = c;
+        this.unit = u;
+        this.image = i;
+        this.batch = "FT-Web$(b)"
+    }
+    function storeData(e){
+        e.preventDefault()
+        let form = document.getElementById("nikhil");
+        let name = form.name.value;
+        let course = form.course.value;
+        let unit = form.unit.value;
+        let image = form.image.value;
+        let batch = form.batch.value;
+        let ayesha = new Student(name,course,unit,image,batch);
+        // console.log(ayesha)
+        let data = JSON.parse(localStorage.getItem("students"))||[]
+        // console.log(data)
+        // data.push(ayesha)
+        localStorage.setItem("students",JSON.stringify(data))
+        // console.log(Student)
+
+    }
+    function calculate(){
+        let data = JSON.parse(localStorage.getItem("students"))||[]
+        let obj = {};
+        for(let i = 0 ; i <data.length;i++){
+            if(!obj[data[i].batch]){
+                obj[data[i].batch]=0;
+            }
+        }
+        for(let i = 0 ; i<data.length;i++){
+            obj[data[i].batch]++;
+            console.log(obj)
+        }
+       
+    }
+    calculate();
+    
+</script>
